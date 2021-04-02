@@ -1,0 +1,93 @@
+﻿<Window x:Name="mw" x:Class="Med.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Med"
+        mc:Ignorable="d"
+        Title="Календарь" Height="888" Width="1300" Closing="mw_Closing"  ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen"      
+        >
+
+    <Grid x:Name="gridMain">
+        <Menu Height="46" VerticalAlignment="Top">
+            <MenuItem Header="Настройки" Height="46" Width="100" FontSize="14">
+
+            </MenuItem>
+        </Menu>
+       
+        <TabControl HorizontalAlignment="Left" Height="661" Margin="25,82,0,0" VerticalAlignment="Top" Width="936" MouseEnter="TabControl_MouseEnter">
+            <TabItem Header="Календарь" Width="120" FontSize="16">
+                <TabItem.Background>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                        <GradientStop Color="#FFD2D2FF" Offset="1"/>
+                    </LinearGradientBrush>
+                </TabItem.Background>
+                <Grid x:Name="grid" HorizontalAlignment="Left" Height="595" VerticalAlignment="Top" Width="920" Margin="5,5,0,0" ShowGridLines="true" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label x:Name="mon" Content="Понедельник" Height="55" VerticalAlignment="Top" FontSize="20" FontFamily="Verdana"/>
+                    <Label x:Name="tue" Content="Вторник" Height="55" VerticalAlignment="Top" FontSize="20" Grid.Column="1" FontFamily="Verdana"/>
+                    <Label x:Name="wed" Content="Среда" Height="55" VerticalAlignment="Top" FontSize="20" Grid.Column="2" FontFamily="Verdana"/>
+                    <Label x:Name="thurs" Content="Четверг" Height="55" VerticalAlignment="Top" FontSize="20" Grid.Column="3" FontFamily="Verdana"/>
+                    <Label x:Name="fri" Content="Пятница" Height="55" VerticalAlignment="Top" FontSize="20" Grid.Row="1" FontFamily="Verdana" BorderBrush="Black" BorderThickness="0,2,0,0" />
+                    <Label x:Name="sat" Content="Суббота" Height="55" VerticalAlignment="Top" FontSize="20" Grid.Row="1"  Grid.Column="1" FontFamily="Verdana" BorderBrush="Black" BorderThickness="0,2,0,0"/>
+                    <Label x:Name="sun" Content="Воскресенье" Height="55" VerticalAlignment="Top" FontSize="20" Grid.Row="1"  Grid.Column="2" FontFamily="Verdana" BorderBrush="Black" BorderThickness="0,2,0,0"/>
+                    <Label x:Name="lbMon" Content="Label" HorizontalAlignment="Center" Height="25" Margin="0,30,0,0" VerticalAlignment="Top" FontSize="14" FontFamily="Verdana"/>
+                    <Label x:Name="lbTue" Content="Label" HorizontalAlignment="Center" Height="25" Margin="0,30,0,0" VerticalAlignment="Top"  Grid.Column="1" FontSize="14" FontFamily="Verdana"/>
+                    <Label x:Name="lbWed" Content="Label"  HorizontalAlignment="Center" Height="25" Margin="0,30,0,0" VerticalAlignment="Top" Grid.Column="2" FontSize="14" FontFamily="Verdana"/>
+                    <Label x:Name="lbThu" Content="Label"  HorizontalAlignment="Center" Height="25" Margin="0,30,0,0" VerticalAlignment="Top" Grid.Column="3" FontSize="14" FontFamily="Verdana"/>
+                    <Label x:Name="lbFri" Content="Label"  HorizontalAlignment="Center" Height="25" Margin="0,30,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="14" FontFamily="Verdana"/>
+                    <Label x:Name="lbSat" Content="Label"  HorizontalAlignment="Center" Height="25" Margin="0,30,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" FontSize="14" FontFamily="Verdana"/>
+                    <Label x:Name="lbSun" Content="Label"  HorizontalAlignment="Center" Height="25" Margin="0,30,0,0" VerticalAlignment="Top" Grid.Column="2" Grid.Row="1" FontSize="14" FontFamily="Verdana"/>
+                    <Label x:Name="lbMonNext"  HorizontalAlignment="Center" Height="25" Margin="0,30,0,0" VerticalAlignment="Top"  Grid.Column="3" Grid.Row="1"/>
+                    <DatePicker x:Name="datePick" HorizontalAlignment="Center" Margin="10,13,5,0" VerticalAlignment="Top" SelectedDateChanged="datePick_SelectedDateChanged" Grid.Column="3" Grid.Row="1" Width="215" SelectedDateFormat="Long" Height="42" FontSize="18" CalendarStyle="{DynamicResource StyleCalendar}"/>
+                    <Button x:Name="curDayBtn" Content="Перейти на текущую неделю" HorizontalAlignment="Left" Height="55" Margin="10,81,0,0" VerticalAlignment="Top" Width="210" Click="Button_Click_1" Grid.Column="3" Grid.Row="1" FontSize="14"/>
+                    <Button Content="Назад" HorizontalAlignment="Left" Height="55" Margin="10,141,0,0" VerticalAlignment="Top" Width="100" Click="Button_Click" Grid.Column="3" Grid.Row="1" FontSize="14"/>
+                    <Button x:Name="btnNext" Content="Вперед" HorizontalAlignment="Left" Height="55" Margin="120,141,0,0" VerticalAlignment="Top" Width="100" Click="btnNext_Click" Grid.Column="3" Grid.Row="1" FontSize="14"/>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,55,0,0">
+                        <StackPanel x:Name="stackMon" CanVerticallyScroll="True" CanHorizontallyScroll="True" ScrollViewer.CanContentScroll="True" Width="230"/>
+                    </ScrollViewer>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,55,0,0" Grid.Column="1">
+                        <StackPanel x:Name="stackTue" CanVerticallyScroll="True" CanHorizontallyScroll="True" ScrollViewer.CanContentScroll="True" Width="230"/>
+                    </ScrollViewer>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,55,0,0" Grid.Column="2">
+                        <StackPanel x:Name="stackWed" CanVerticallyScroll="True" CanHorizontallyScroll="True" ScrollViewer.CanContentScroll="True" Width="230"/>
+                    </ScrollViewer>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,55,0,0" Grid.Column="3">
+                        <StackPanel x:Name="stackThurs" CanVerticallyScroll="True" CanHorizontallyScroll="True" ScrollViewer.CanContentScroll="True" Width="230"/>
+                    </ScrollViewer>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,55,0,-1" Grid.Row="1" BorderThickness="0,2,0,0" BorderBrush="Black">
+                        <StackPanel x:Name="stackFri" CanVerticallyScroll="True" CanHorizontallyScroll="True" ScrollViewer.CanContentScroll="True" Width="230"/>
+                    </ScrollViewer>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,55,0,-1" Grid.Column="1" Grid.Row="1" BorderThickness="0,2,0,0" BorderBrush="Black">
+                        <StackPanel x:Name="stackSat" CanVerticallyScroll="True" CanHorizontallyScroll="True" ScrollViewer.CanContentScroll="True" Width="230"/>
+                    </ScrollViewer>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,55,0,-1" Grid.Column="2" Grid.Row="1" BorderThickness="0,2,0,0" BorderBrush="Black">
+                        <StackPanel x:Name="stackSun" CanVerticallyScroll="True" CanHorizontallyScroll="True" ScrollViewer.CanContentScroll="True" Width="230"/>
+                    </ScrollViewer>
+                    <Button x:Name="testBtn" Content="Добавить пациента" HorizontalAlignment="Left" Height="55" Margin="10,232,0,0" VerticalAlignment="Top" Width="210" Click="testBtn_Click" Grid.Column="3" Grid.Row="1" FontSize="14"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Финансы" Width="120" FontSize="16">
+                <TabItem.Background>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                        <GradientStop Color="#FFD2D2FF" Offset="1"/>
+                    </LinearGradientBrush>
+                </TabItem.Background>
+
+            </TabItem>
+        </TabControl>
+
+
+    </Grid>
+</Window>
